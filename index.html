@@ -778,17 +778,17 @@
 </head>
 <body x-data="dashboard()" x-init="init()">
     <div class="container">
-        <h1>🌿 Kratom Counter (Cloud Live) 🌿</h1>
-        <h2>YENCHAM GANG OFFICIAL &middot; v5.0.9</h2>
+        <h1>🌿 Counter Dashboard (Cloud Live) 🌿</h1>
+        <h2>หม้อไม่หายถ้าเราช่วยกัน &middot; YC37 GANG OFFICIAL &middot; Version 5.1</h2>
 
         <!-- ---- Lap selector ย้ายขึ้นมาบนสุด: เลือก lap ไหน ค่าด้านล่างเปลี่ยนตามทันที (โชว์เฉพาะแท็บแดชบอร์ด) ---- -->
         <div class="card" style="text-align: left;" x-show="activeTab === 'dashboard'">
-            <div style="font-size: 13px; color: #aaa; margin-bottom: 8px;">ค้นหา / เลือก Lap</div>
+            <div style="font-size: 13px; color: #aaa; margin-bottom: 8px;">ค้นหา / เลือกหม้อ</div>
             <div class="lap-search-wrap" @click.outside="lapDropdownOpen = false">
                 <input
                     type="text"
                     class="lap-search-input"
-                    placeholder="พิมพ์เลข lap หรือวันที่/เวลา เช่น 14/07..."
+                    placeholder="พิมพ์เลข lap(หม้อ) หรือวันที่/เวลา เช่น 14/07..."
                     x-model="lapSearch"
                     @focus="lapDropdownOpen = true"
                 />
@@ -813,9 +813,9 @@
 
         <!-- ---- NEW: Tab navigation ---- -->
         <div class="tab-row">
-            <button class="tab-btn" :class="activeTab === 'dashboard' ? 'tab-active' : ''" @click="activeTab = 'dashboard'">แดชบอร์ด</button>
-            <button class="tab-btn" :class="activeTab === 'lapprofile' ? 'tab-active' : ''" @click="activeTab = 'lapprofile'">Lap Profile</button>
-            <button class="tab-btn" :class="activeTab === 'analytics' ? 'tab-active' : ''" @click="activeTab = 'analytics'">วิเคราะห์</button>
+            <button class="tab-btn" :class="activeTab === 'dashboard' ? 'tab-active' : ''" @click="activeTab = 'dashboard'">แดชบอร์ดหลัก</button>
+            <button class="tab-btn" :class="activeTab === 'lapprofile' ? 'tab-active' : ''" @click="activeTab = 'lapprofile'">โปรไฟล์ตามหม้อ</button>
+            <button class="tab-btn" :class="activeTab === 'analytics' ? 'tab-active' : ''" @click="activeTab = 'analytics'">วิเคราะห์สถิติ</button>
         </div>
 
         <template x-if="activeTab === 'dashboard'">
@@ -839,16 +839,16 @@
 
         <div class="card hero-card">
             <div class="hero-header-row">
-                <span class="hero-label">รวมทั้งหมด</span>
+                <span class="hero-label">รอบรวมทั้งหมด</span>
                 <span class="hero-date" x-text="displayedLap ? (formatLapDateTime(displayedIsLive ? liveClockNow : displayedLap.time) + ycSuffix(displayedLap)) : ''"></span>
             </div>
             <div class="global-round" x-text="displayedGlobalRound"></div>
-            <div class="hero-sub" x-show="displayedIsLive">กำลังวนอยู่ <b x-text="displayedActiveCount"></b> คน &middot; ล่าสุด <span x-text="timeSincePress"></span> วิ</div>
+            <div class="hero-sub" x-show="displayedIsLive">ในวงกำลังวนอยู่ <b x-text="displayedActiveCount"></b> คน &middot; ล่าสุด <span x-text="timeSincePress"></span> วิ</div>
             <div class="hero-sub" x-show="!displayedIsLive" x-text="lapCloseTimeText"></div>
 
             <!-- ---- NEW: ช่อง YC คู่ มุมขวาล่างของกรอบ ---- -->
             <div class="hero-yc-row">
-                <span class="hero-yc-label">ยา</span>
+                <span class="hero-yc-label">ใส่ยา</span>
                 <div class="hero-yc-combo" @click.outside="ycDropdown1Open = false">
                     <input
                         type="text"
@@ -928,7 +928,7 @@
                 </div>
             </template>
             <template x-if="!displayedLap">
-                <div class="history-empty">ยังไม่มี Lap ที่สร้างไว้</div>
+                <div class="history-empty">ยังไม่มี Lap(หม้อ) ที่สร้างไว้</div>
             </template>
 
             <template x-if="displayedLap">
@@ -967,10 +967,10 @@
         <template x-if="activeTab === 'lapprofile'">
         <div>
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">เลือก Lap</div>
+                <div class="lp-section-title">เลือกหม้อ</div>
                 <div class="lp-picker-list">
                     <template x-if="sortedLaps.length === 0">
-                        <div class="history-empty">ยังไม่มี Lap ที่สร้างไว้</div>
+                        <div class="history-empty">ยังไม่มี Lap(หม้อ) ที่สร้างไว้</div>
                     </template>
                     <template x-for="lap in sortedLaps" :key="lap.id">
                         <div
@@ -1053,7 +1053,7 @@
             <div class="analytics-summary-row">
                 <div class="analytics-stat-card">
                     <div class="analytics-stat-value" x-text="analyticsSummary.totalLaps"></div>
-                    <div class="analytics-stat-label">Lap ทั้งหมด</div>
+                    <div class="analytics-stat-label">หม้อทั้งหมด</div>
                 </div>
                 <div class="analytics-stat-card">
                     <div class="analytics-stat-value" x-text="allTimeLeaderboard.reduce((sum, p) => sum + p.total, 0)"></div>
@@ -1063,13 +1063,13 @@
             <div class="analytics-summary-row" style="margin-top: 8px;">
                 <div class="analytics-stat-card">
                     <div class="analytics-stat-value" style="font-size: 13px;" x-text="analyticsSummary.firstDate ? formatLapDateTime(analyticsSummary.firstDate).split(' ')[1] : '-'"></div>
-                    <div class="analytics-stat-label">เริ่มใช้งานเมื่อ</div>
+                    <div class="analytics-stat-label">เริ่มใช้งานตั้งแต่</div>
                 </div>
             </div>
 
             <!-- 2. All-time Leaderboard -->
             <div class="card" style="text-align: left; margin-top: 12px;">
-                <div class="lp-section-title">🏆 All-time Leaderboard</div>
+                <div class="lp-section-title">🏆 All-time Leaderboard จัดอันดับนักวนน้ำตลอดกาล </div>
                 <template x-if="allTimeLeaderboard.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูล</div>
                 </template>
@@ -1086,7 +1086,7 @@
 
             <!-- 3. ความสัมพันธ์ระหว่างวันกับจำนวน Lap (v5.2: กราฟเส้นสไตล์หุ้น) -->
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">📅 จำนวน Lap ต่อวัน</div>
+                <div class="lp-section-title">📅 จำนวนหม้อต่อวัน</div>
                 <template x-if="lapsPerDayData.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูล</div>
                 </template>
@@ -1132,7 +1132,7 @@
 
             <!-- 4. ขาประจำ (Attendance) -->
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">📅 ขาประจำ (เข้าร่วมกี่ % ของ Lap ทั้งหมด)</div>
+                <div class="lp-section-title">📅 นักวนน้ำ (เข้าร่วมกี่ % ของ Lap ทั้งหมด)</div>
                 <template x-if="attendanceData.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูล</div>
                 </template>
@@ -1149,7 +1149,7 @@
 
             <!-- 5. ใครเล่นคู่กันบ่อยสุด -->
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">👯 ใครเล่นคู่กันบ่อยสุด</div>
+                <div class="lp-section-title">👯 ใครวนคู่กันบ่อยสุด</div>
                 <template x-if="topPairsData.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูลพอ</div>
                 </template>
@@ -1173,15 +1173,15 @@
                         <b x-text="getPlayerStats(personProfileModal).totalRounds"></b>
                     </div>
                     <div class="modal-stat-row">
-                        <span>จำนวน Lap ที่ร่วม</span>
+                        <span>จำนวนหม้อที่ร่วม</span>
                         <b x-text="getPlayerStats(personProfileModal).lapsParticipated"></b>
                     </div>
                     <div class="modal-stat-row">
-                        <span>เฉลี่ยต่อ Lap</span>
+                        <span>เฉลี่ยต่อหม้อ</span>
                         <b x-text="getPlayerStats(personProfileModal).avg.toFixed(1)"></b>
                     </div>
                     <div class="modal-stat-row" x-show="getPlayerStats(personProfileModal).maxLapNumber">
-                        <span>Lap ที่รอบเยอะสุด</span>
+                        <span>หม้อที่รอบเยอะสุด</span>
                         <b x-text="'lap' + getPlayerStats(personProfileModal).maxLapNumber + ' (' + getPlayerStats(personProfileModal).maxLapRounds + ' รอบ)'"></b>
                     </div>
                     <button class="modal-close-btn" @click="closePersonProfile()">ปิด</button>
