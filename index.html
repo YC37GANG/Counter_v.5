@@ -848,7 +848,7 @@
 
             <!-- ---- NEW: ช่อง YC คู่ มุมขวาล่างของกรอบ ---- -->
             <div class="hero-yc-row">
-                <span class="hero-yc-label">ใส่ยา</span>
+                <span class="hero-yc-label">กรุณากรอก ยาขวดที่</span>
                 <div class="hero-yc-combo" @click.outside="ycDropdown1Open = false">
                     <input
                         type="text"
@@ -907,7 +907,7 @@
             </div>
             <textarea
                 class="note-textarea"
-                placeholder="เขียนหมายเหตุถึงกลุ่มสำหรับ lap นี้..."
+                placeholder="เขียนหมายเหตุถึงกลุ่มสำหรับหม้อนี้..."
                 x-model="noteText"
                 :disabled="!activeNoteLapKey"
                 @input="noteDirty = true"
@@ -989,7 +989,7 @@
             <div class="card lp-header-card">
                 <div class="lp-header-top">
                     <span class="lp-lap-badge" x-text="displayedLap ? ('lap' + displayedLap.lapNumber) : '-'"></span>
-                    <span class="lp-live-badge" x-show="displayedIsLive">● กำลังนับสด</span>
+                    <span class="lp-live-badge" x-show="displayedIsLive">● กำลังนับรอบวนปัจจุบัน</span>
                 </div>
                 <div class="lp-time-range" x-text="lapTimeRangeText"></div>
                 <div class="lp-duration">ระยะเวลา: <b x-text="lapDurationText"></b></div>
@@ -1132,7 +1132,7 @@
 
             <!-- 4. ขาประจำ (Attendance) -->
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">📅 นักวนน้ำ (เข้าร่วมกี่ % ของ Lap ทั้งหมด)</div>
+                <div class="lp-section-title">📅 นักวนน้ำ (เข้าร่วมกี่ % ของหม้อทั้งหมด)</div>
                 <template x-if="attendanceData.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูล</div>
                 </template>
@@ -1149,7 +1149,7 @@
 
             <!-- 5. ใครเล่นคู่กันบ่อยสุด -->
             <div class="card" style="text-align: left;">
-                <div class="lp-section-title">👯 ใครวนคู่กันบ่อยสุด</div>
+                <div class="lp-section-title">👯 คู่วนด้วยกันบ่อยสุด</div>
                 <template x-if="topPairsData.length === 0">
                     <div class="history-empty">ยังไม่มีข้อมูลพอ</div>
                 </template>
