@@ -1107,7 +1107,9 @@
                         <span class="status-dot" :class="p.active ? 'on' : 'off'"></span>
                         <span class="lp-rank-name" x-text="p.name"></span>
                         <span class="lp-rank-pct" x-text="p.pct + '%'"></span>
-                        <span class="lp-rank-round" :class="p.round === 0 ? 'zero' : ''" x-text="p.round"></span>
+                        <span class="lp-rank-round" :class="p.round === 0 ? 'zero' : ''">
+                            <span x-text="p.round"></span><span class="player-ratio" x-text="' (' + ratioText(p.round) + ')'"></span>
+                        </span>
                     </div>
                 </template>
             </div>
